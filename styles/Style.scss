@@ -112,3 +112,69 @@ header{
     }
 }
 }
+
+.qrhi{
+    background-color: gray;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .qrmain{
+        height: 80vh;
+        width: 60%;
+        background-color: #fff;
+        border-radius: 0.8rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        img{
+            // max-height: 30rem;
+            max-width: 30rem;
+            min-width: 10rem;
+            
+
+        }
+
+        button{
+            background-color: #55acee;
+            color: #fff;
+            padding: 0.5rem 2rem;
+            margin: 1rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+
+
+    }
+
+}
+
+
+.contera{
+
+    height: 88vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    .fg{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 80%;
+        width: 60%;
+        border-radius: 36px;
+background: linear-gradient(145deg, #cacaca, #f0f0f0);
+box-shadow:  16px 16px 36px #8f8f8f,
+             -16px -16px 36px #ffffff;
+    }
+}

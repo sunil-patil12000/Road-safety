@@ -1,8 +1,62 @@
+import axios from "axios";
 import Nav from "./compontions/Nav";
+import { useState } from "react";
+import Cookies from "js-cookie";
+
+
 
 const Login = () => {
+
+  const [uname, setUname] = useState();
+  const [password, setPassword] = useState();
+
+
+  // const [data, setData] = useState();
+
+
+
+
+  const url = process.env.BACK || 'http://localhost:4545';
+
+
+  const logindata = () => {
+    axios.post(url + '/login', {
+      email: uname,
+      pass: password,
+    }).then((res) => {
+
+      console.log(res.data._id);
+
+      Cookies.set('user', res.data._id);
+
+
+    }).catch((e) => {
+      console.error("error", e);
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+
+
   return (
     <>
+      <Nav />
       <div className="mc ">
         <div className="logc  w-full h-full ">
           <div className="cdiv container">
@@ -24,7 +78,11 @@ const Login = () => {
                           type="text"
                           class="peer block min-h-[auto] w-full rounded border-2 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                           id="exampleFormControlInput3"
+                          onChange={(e) => { setUname(e.target.value) }}
                           placeholder="Email address"
+
+
+
                         />
                         <label
                           htmlFor="exampleFormControlInput3"
@@ -40,6 +98,8 @@ const Login = () => {
                           class="peer block min-h-[auto] w-full rounded border-2 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                           id="exampleFormControlInput33"
                           placeholder="Password"
+
+                          onChange={(e) => { setPassword(e.target.value) }}
                         />
                         <label
                           htmlFor="exampleFormControlInput33"
@@ -65,6 +125,8 @@ const Login = () => {
                         class="inline-block w-full rounded bg-blue-500 hover:bg-blue-900 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
                         data-te-ripple-init
                         data-te-ripple-color="light"
+
+                        onClick={logindata}
                       >
                         Sign in
                       </button>

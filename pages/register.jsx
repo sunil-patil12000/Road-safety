@@ -1,9 +1,13 @@
-import Link from "next/link";
+import Nav from "./compontions/Nav";
+
+
+
 
 
 const register = () => {
   return (
     <>
+    <Nav/>
       <div className=" mg bg-slate-500 w-full">
         <div className="bg2 grid">
           <div className="imgh grid-cols-6">
