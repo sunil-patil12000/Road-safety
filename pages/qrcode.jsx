@@ -2,9 +2,17 @@ import React, { useState, useEffect } from 'react'
 import QRCode from 'qrcode';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import Nav from './compontions/Nav';
+import { Router, useRouter } from 'next/router';
 
 const qrcode = () => {
     const [src, setSrc] = useState();
+
+    const r = useRouter()
+
+
+
+
 
 
 
@@ -25,6 +33,17 @@ const qrcode = () => {
             }).then((res) => {
                 setData(res.data)
             })
+
+
+
+            QRCode.toDataURL(`name : ${data.fname} \nphone: ${data.p_number}\naddress:${data.c_address}\ngardiun:${data.garden_name}\nBlood group:${data.BloodGroup} `, function (err, url) {
+                setSrc(url)
+
+
+
+
+
+            })
         }
 
         data()
@@ -37,30 +56,15 @@ const qrcode = () => {
 
 
 
-    
-
-
-    const gen = () => {
 
 
 
 
-        QRCode.toDataURL(`name : ${data.fname} \n phone: ${data.p_number} `, function (err, url) {
-            setSrc(url)
-
-
-
-
-
-        })
-
-
-
-
-    }
     return (
-        <>
 
+
+        <>
+            <Nav />
             <div className="qrhi">
 
 
@@ -68,7 +72,7 @@ const qrcode = () => {
 
                     <img src={src} alt={src} />
 
-                    <button onClick={gen}>Download </button>
+                    {/* <button onClick={gen}>Get QRcode</button> */}
                 </div>
             </div>
 

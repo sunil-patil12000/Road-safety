@@ -1,11 +1,33 @@
+"clint "
+
+
 import Cookies from "js-cookie";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 
 
 const Nav = () => {
 
+  const router = useRouter();
 
+
+
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+  if (!hydrated) {
+
+    return null;
+  }
+
+
+  const hndler = () => {
+    Cookies.remove('user')
+    router.push('/')
+
+  }
 
 
 
@@ -31,29 +53,21 @@ const Nav = () => {
           </a>
           <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
             <a href="/" class="mr-5 hover:text-gray-900">Home</a>
-            <a href="/service" class="mr-5 hover:text-gray-900">Services</a>
-            <a href="/register" class="mr-5 hover:text-gray-900">Register</a>
             <a class="mr-5 hover:text-gray-900">About Us</a>
+            {
+              !Cookies.get('user') ? (<></>) : (<> <a href="/qrcode" class="mr-5 hover:text-gray-900">Get QR</a></>)
+            }
+            {
+              <a href="/register" class="mr-5 hover:text-gray-900">Register</a>
+            }
           </nav>
-          <a
-            href={"/login"}
-            class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
-          >
-            Login
-            <svg
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              class="w-4 h-4 ml-1"
-              viewBox="0 0 24 24"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
+          {
+            !Cookies.get('user') ? (<><a href="/login" class="mr-5 hover:text-gray-900">Login</a></>) : (<><a style={{ cursor: 'pointer' }} onClick={() => { hndler() }} class="mr-5 hover:text-gray-900">Log out</a></>)
+
+
+          }
         </div>
-      </header>
+      </header >
     </>
   );
 };
